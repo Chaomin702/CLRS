@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 int BinSearchIter(int *A,int size,int v);
 int BinsearchRecursive(int *A,int l,int r,int v);
