@@ -9,13 +9,39 @@ using maxArray = struct{
 };
 maxArray findMaxMidArray(const vector<int> &v, iter l, iter m, iter r);
 maxArray findMaxArray(const vector<int> &v, iter l, iter r);
+maxArray findMaxArrayLinear(const vector<int> &v,iter l,iter r);
 int main(void){
 	vector<int> v = { 1,2,-3,-4,5,6,-7,8 };
 	auto M = findMaxArray(v, v.cbegin(), v.cend()-1);
+	auto N = findMaxArrayLinear(v,v.cbegin(),v.cend());
 	cout << M.sum << endl;
+	cout << N.sum << endl;
 	return 0;
 }
-
+maxArray findMaxArrayLinear(const vector<int> &v,iter l,iter r){
+	maxArray S[r-l];
+	S[0].left = l;
+	S[0].right = l+1;
+	S[0].sum = *l;
+	for(auto i = l+1;i!=r;++i){
+		if(S[i-l-1].sum>0){
+			S[i-l].left = S[i-l-1].left;
+			S[i-l].right = i+1;
+			S[i-l].sum = S[i-l-1].sum + *i; 
+		}else{
+			S[i-l].left = i;
+			S[i-l].right = i+1;
+			S[i-l].sum = *i;
+		}
+	}
+	auto *maxS = &S[0];
+	for(decltype(r-l) i=1;i<r-l;++i){
+		if(maxS->sum < S[i].sum){
+			maxS = &S[i];
+		}
+	}
+	return *maxS;
+}
 maxArray findMaxMidArray(const vector<int> &v, iter l, iter m, iter r){
 	maxArray M;
 	if (l == r){
