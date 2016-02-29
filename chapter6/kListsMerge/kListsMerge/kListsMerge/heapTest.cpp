@@ -1,11 +1,13 @@
 #include <iostream>
+#include <climits>
 #include "Heap.h"
+
 using namespace std;
 
 int main(){
 	int A[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 	vector<int> v = {6,3,7,2,0,5,1,4};
-	Heap H(A,0,15);
+	Heap<int> H(A,0,15,INT_MAX);
 	H.print();
 	H.build();
 	H.print();
@@ -17,7 +19,7 @@ int main(){
 	H.print();
 	H.erase(2);
 	H.print();
-	heapSort(v);
+	heapSort(v,INT_MAX);
 	for(auto i:v){
 		cout << i << " ";
 	}

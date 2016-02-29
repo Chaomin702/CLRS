@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <climits>
 const int DEFAULT_CAPACITY = 4;
 using std::swap;
 using std::vector;
@@ -12,17 +13,20 @@ public:
 	~Heap(){delete[] _elem;}
     void heapify(size_t i);
     void build();
-//    void insert();
-    bool empty(){
+    void insert(const int&);
+    int erase(size_t i);
+    void increaseKey(size_t i,const int &e);
+    bool empty()const{
     	if(_size) 
     		return false;
     	else
     		return true;
     }
     int extractMax();
-    int maximum(){if(_size!=0) return _elem[0];}
+    int maximum()const{if(_size!=0) return _elem[0];}
     void expand();
-    void print();
+    void shrink();
+    void print()const;
 private:
     int *_elem;
     size_t _size;
