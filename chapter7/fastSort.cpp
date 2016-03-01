@@ -3,7 +3,6 @@
 using namespace std;
 void fastSort(int *A,int lo,int hi);
 int partition(int *A,int lo,int hi);
-//vector<int>::iterator partition(vector<int>& v);
 vector<int>::iterator partition(vector<int>::iterator lo,vector<int>::iterator hi);
 void fastSort(vector<int>::iterator lo,vector<int>::iterator hi);
 int main(){
