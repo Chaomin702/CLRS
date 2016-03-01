@@ -70,7 +70,7 @@ void Heap<T>::print()const{
 template <typename T>
 T Heap<T>::extractMax(){
 	T bak = _elem[0];
-	swap(_elem[_size-1],_elem[0]);
+	swap(_elem[_size-1],_elmem[0]);
 	--_size;
 	shrink();
 	heapify(0);
