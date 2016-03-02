@@ -1,9 +1,11 @@
 #include <iostream>
 #include <algorithm>
+#include <random>
 using namespace std;
 void fastSort(int *A,int lo,int hi);
 int partition(int *A,int lo,int hi);
 vector<int>::iterator partition(vector<int>::iterator lo,vector<int>::iterator hi);
+vector<int>::iterator partition_random(vector<int>::iterator lo,vector<int>::iterator hi);
 void fastSort(vector<int>::iterator lo,vector<int>::iterator hi);
 int main(){
 	int A[]={3,5,2,6,1,8,4,9,7};
@@ -43,7 +45,7 @@ int partition(int *A,int lo,int hi){
 }
 void fastSort(vector<int>::iterator lo,vector<int>::iterator hi){
 	if(hi-lo<2) return;
-	auto mi = partition(lo,hi);
+	auto mi = partition_random(lo,hi);
 	fastSort(lo,mi);
 	fastSort(mi+1,hi);
 }
@@ -57,6 +59,22 @@ vector<int>::iterator partition(vector<int>::iterator lo,vector<int>::iterator h
 		}
 		++j;
 	}
-	swap(*(i+1),*(hi-1));
+	swap(*(i+1),*key);
+	return ++i;
+}
+vector<int>::iterator partition_random(vector<int>::iterator lo,vector<int>::iterator hi){
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(0,hi-lo-1);
+	swap(*(lo+distribution(generator)),*(hi-1));
+	auto key =hi-1;		
+	auto i = lo - 1, j = lo;
+	while(j!=hi-1){
+		if((*j)<(*key)){
+			++i;
+			swap(*i,*j);
+		}
+		++j;
+	}
+	swap(*(i+1),*key);
 	return ++i;
 }
