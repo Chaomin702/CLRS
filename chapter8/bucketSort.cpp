@@ -27,7 +27,8 @@ public:
 		head.succ = &tail;
 		tail.pre = &head;
 	}
-//	~list(){ 	delete_list(); }
+	~list(){ 	delete_list(); }
+	bool empty(){ return head.succ == &tail; }
 	void print(){
 		listNode<T> *p = head.succ;
 		while (p->succ != nullptr){
@@ -46,12 +47,12 @@ public:
 private:
 	listNode<T> head, tail;
 	void delete_list(){
-		listNode<T> *p = &head;
+		if (empty()) return;
+		listNode<T> *p = &getFirst();
 		while (p->succ != nullptr){
 			p = p->succ;
 			delete p->pre;
 		}
-		delete p;
 	}
 };
 
@@ -89,7 +90,7 @@ void bucketSort(double *A, int lo, int hi){
 		}
 	}
 	M.print();
-//	delete[] B;
+	delete[] B;
 }
 template <typename T>
 void insertSort(listNode<T> &L){
