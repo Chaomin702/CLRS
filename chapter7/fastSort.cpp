@@ -1,6 +1,9 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include <stdexcept>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 void fastSort(int *A,int lo,int hi);
 int partition(int *A,int lo,int hi);
@@ -77,4 +80,22 @@ vector<int>::iterator partition_random(vector<int>::iterator lo,vector<int>::ite
 	}
 	swap(*(i+1),*key);
 	return ++i;
+}
+template <typename T>
+int random_partition(T *A,int lo,int hi){
+	if(hi==lo) throw runtime_error("Partition: parameter invaild!");
+	if(hi-lo<2) return A[lo];
+	srand(time(NULL));
+	swap(A[hi-1],A[lo+rand()%(hi-lo)]);
+	T key = A[hi-1];
+	int i = lo-1,j=lo;
+	while(j<hi-1){
+		if(A[j]<key){
+			++i;
+			swap(A[j],A[i]);
+		}
+		++j;
+	}
+	swap(A[++i],A[hi-1]);
+	return i;
 }
