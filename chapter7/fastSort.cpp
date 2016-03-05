@@ -99,3 +99,27 @@ int random_partition(T *A,int lo,int hi){
 	swap(A[++i],A[hi-1]);
 	return i;
 }
+template <typename T>
+int random_partition_with_equal(T *A,int lo,int hi){
+	srand(time(NULL));
+	swap(A[lo],A[lo+rand()%(hi-lo)]);
+	T key = A[lo];
+	while(lo<hi){
+		while(lo<hi){
+			if(A[hi]>key)
+				hi--;
+			else{
+				A[lo++] = A[hi];break;
+			}
+		}
+		while(lo<hi){
+			if(A[lo]<key)
+				lo++;
+			else{
+				A[hi--]=A[lo];break;
+			}
+		}
+	}
+	A[lo]=key;
+	return lo;
+}
