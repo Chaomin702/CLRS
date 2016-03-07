@@ -20,19 +20,11 @@ void visit(node<T>* n);
 template <typename T>
 void traverse(node<T>* root);
 template <typename T>
-void traverse(node<T>* root){
-	std::stack<node<T>*> S;
-	node<T> *p = nullptr;
-	S.push(root);
-	while(!S.empty()){
-		p = S.top();
-		S.pop();
-		visit(p);
-		if(p->lc!=nullptr) S.push(p->lc);
-		if(p->rc!=nullptr) S.push(p->rc);
-	}
-}
+void pre_traverse(node<T>* root);
 template <typename T>
-void visit(node<T>* n){
-	std::cout << n->key << std::endl;
-};
+void pre_traverse_iter(node<T>* root);
+template <typename T>
+void in_traverse(node<T>* root);
+template <typename T>
+void in_traverse_iter(node<T>* root);
+#include "bin_tree_implementation.h"

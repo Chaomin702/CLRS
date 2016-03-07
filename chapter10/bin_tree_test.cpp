@@ -11,6 +11,12 @@ int main(){
 	m.lc->insertAsRchild(4);
 	m.rc->insertAsLchild(5);
 	m.rc->insertAsRchild(6);
-	traverse(&m);
+	pre_traverse(&m);
+	pre_traverse_iter(&m);
+	cout << "------------"<<endl;
+	in_traverse(&m);
+	in_traverse_iter(&m);
+	cout << "------------"<<endl;
+	
 	return 0;
 }
