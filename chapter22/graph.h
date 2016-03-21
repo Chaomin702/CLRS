@@ -26,6 +26,7 @@ public:
 	~Graph(){
 
 	}
+	void insert_edge(Edge *E);
 private:
 	int numOfVertex;
 	Vertex **V;
